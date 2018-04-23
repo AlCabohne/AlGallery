@@ -1,19 +1,15 @@
 package com.alcabone.gesturegallery.activities;
 
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
-import android.widget.RelativeLayout;
 
-import com.alcabone.gesturegallery.Constants;
 import com.alcabone.gesturegallery.CustomViewPager;
-import com.alcabone.gesturegallery.OnImgClick;
+import com.alcabone.gesturegallery.GalleryConstants;
 import com.alcabone.gesturegallery.R;
 import com.alcabone.gesturegallery.adapters.HorizontalListAdapters;
 import com.alcabone.gesturegallery.adapters.ViewPagerAdapter;
-import com.alcabone.gesturegallery.entities.ZColor;
 
 public class GalleryActivity extends BaseActivity {
 
@@ -31,32 +27,35 @@ public class GalleryActivity extends BaseActivity {
     @Override
     protected void afterInflation() {
         // init layouts
-        RelativeLayout mainLayout = findViewById(R.id.mainLayout);
+        initLayout();
+
+        // get intent data after configuration change
+        int currentPos = getIntent().getIntExtra(GalleryConstants.IntentPassingParams.SELECTED_IMG_POS, 0);
+
+        // setAdapters
+        setAdapters();
+
+        hAdapter.setSelectedItem(currentPos);
+        mViewPager.setCurrentItem(currentPos);
+    }
+
+    private void initLayout()
+    {
         mViewPager = findViewById(R.id.pager);
         imagesHorizontalList = findViewById(R.id.imagesHorizontalList);
+    }
 
-        // get intent data
-        int currentPos = getIntent().getIntExtra(Constants.IntentPassingParams.SELECTED_IMG_POS, 0);
-//        ZColor bgColor = (ZColor) getIntent().getSerializableExtra(Constants.IntentPassingParams.BG_COLOR);
-//
-//        if (bgColor == ZColor.WHITE) {
-//            mainLayout.setBackgroundColor(ContextCompat.getColor(this, android.R.color.white));
-//        }
-
+    private void setAdapters()
+    {
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         // pager adapter
-        adapter = new ViewPagerAdapter(this, imageURLs, mToolbar, imagesHorizontalList);
+        adapter = new ViewPagerAdapter(this, imageURLs, mToolbar, imagesHorizontalList, onlyFullscreen);
         mViewPager.setAdapter(adapter);
         // horizontal list adapter
-        hAdapter = new HorizontalListAdapters(this, imageURLs, new OnImgClick() {
-            @Override
-            public void onClick(int pos) {
-                mViewPager.setCurrentItem(pos, true);
-            }
-        });
+        hAdapter = new HorizontalListAdapters(this, imageURLs, pos -> mViewPager.setCurrentItem(pos, true));
         imagesHorizontalList.setLayoutManager(mLayoutManager);
         imagesHorizontalList.setAdapter(hAdapter);
-        hAdapter.notifyDataSetChanged();
+//        hAdapter.notifyDataSetChanged();
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -74,9 +73,6 @@ public class GalleryActivity extends BaseActivity {
 
             }
         });
-
-        hAdapter.setSelectedItem(currentPos);
-        mViewPager.setCurrentItem(currentPos);
     }
 
     @Override

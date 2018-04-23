@@ -1,19 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<android.support.design.widget.CoordinatorLayout-->
-<!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--android:id="@+id/mainLayout"-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="match_parent"-->
-<!--android:background="#000000">-->
-
-<!--<android.support.design.widget.AppBarLayout-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="wrap_content">-->
-
-<!--<include layout="@layout/z_toolbar"/>-->
-
-<!--</android.support.design.widget.AppBarLayout>-->
-
 
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -23,13 +8,11 @@
     android:animateLayoutChanges="true"
     android:orientation="vertical">
 
-    <!--android:background="#000000"-->
-
     <com.alcabone.gesturegallery.CustomViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="false"/>
+        android:fitsSystemWindows="true"/>
     <!--android:layout_below="@+id/toolbar"-->
 
     <include layout="@layout/z_toolbar"/>
@@ -37,12 +20,11 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/imagesHorizontalList"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="5dp"
         android:clipToPadding="false"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"/>
+        android:paddingBottom="2dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"/>
 </RelativeLayout>
-
-    <!--</android.support.design.widget.CoordinatorLayout>-->

@@ -2,15 +2,13 @@ package com.alcabone.gesturegallery.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.alcabone.gesturegallery.Constants;
+import com.alcabone.gesturegallery.GalleryConstants;
 import com.alcabone.gesturegallery.R;
-import com.alcabone.gesturegallery.entities.ZColor;
 
 import java.util.ArrayList;
 
@@ -18,9 +16,11 @@ public abstract class BaseActivity extends AppCompatActivity
 {
     protected Toolbar mToolbar;
     protected ArrayList<String> imageURLs;
-    protected ZColor toolbarTitleColor;
-    protected int toolbarColorResId;
+    protected int toolbarTitleColor;
+    protected boolean onlyFullscreen;
+    private int showBackButton;
     private String title;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,10 +36,11 @@ public abstract class BaseActivity extends AppCompatActivity
     }
 
     private void getValues(){
-        imageURLs = getIntent().getStringArrayListExtra(Constants.IntentPassingParams.IMAGES);
-        toolbarColorResId = getIntent().getIntExtra(Constants.IntentPassingParams.TOOLBAR_COLOR_ID, -1);
-        title = getIntent().getStringExtra(Constants.IntentPassingParams.TITLE);
-        toolbarTitleColor = (ZColor) getIntent().getSerializableExtra(Constants.IntentPassingParams.TOOLBAR_TITLE_COLOR);
+        imageURLs = getIntent().getStringArrayListExtra(GalleryConstants.IntentPassingParams.IMAGES);
+        title = getIntent().getStringExtra(GalleryConstants.IntentPassingParams.TITLE);
+        toolbarTitleColor = getIntent().getIntExtra(GalleryConstants.IntentPassingParams.TOOLBAR_TITLE_COLOR, -1);
+        onlyFullscreen = getIntent().getBooleanExtra(GalleryConstants.IntentPassingParams.ONLYFULLSCREEN, false);
+        showBackButton = getIntent().getIntExtra(GalleryConstants.IntentPassingParams.SHOWBACKBUTTON, 0);
     }
 
     private void applyToolbar()
@@ -52,6 +53,12 @@ public abstract class BaseActivity extends AppCompatActivity
             if (title != null && getSupportActionBar() != null) {
                 getSupportActionBar().setTitle(title);
             }
+            if (toolbarTitleColor != -1)
+                mToolbar.setTitleTextColor(ContextCompat.getColor(this, toolbarTitleColor));
+            if (showBackButton == GalleryConstants.ColorOptions.BACK_BUTTON_WHITE)
+                mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white);
+            else if (showBackButton == GalleryConstants.ColorOptions.BACK_BUTTON_BLACK)
+                mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_black);
 
 //            mToolbar.setVisibility(View.VISIBLE);
 //            if (toolbarTitleColor == ZColor.BLACK) {

@@ -1,11 +1,7 @@
 package com.alcabone.gesturegallery.adapters;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -15,18 +11,11 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.Target;
 import com.alcabone.gesturegallery.R;
+import com.bumptech.glide.Glide;
 import com.github.chrisbanes.photoview.OnPhotoTapListener;
 import com.github.chrisbanes.photoview.PhotoView;
-import com.github.chrisbanes.photoview.PhotoViewAttacher;
 
 import java.util.ArrayList;
 
@@ -37,12 +26,22 @@ public class ViewPagerAdapter extends PagerAdapter {
     private boolean isShowing = true;
     private Toolbar toolbar;
     private RecyclerView imagesHorizontalList;
+    private boolean onlyFullscreen;
 
-    public ViewPagerAdapter(Context context, ArrayList<String> images, Toolbar toolbar, RecyclerView imagesHorizontalList) {
+    public ViewPagerAdapter(Context context, ArrayList<String> images, Toolbar toolbar, RecyclerView imagesHorizontalList, boolean onlyFullscreen)
+    {
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.images = images;
         this.toolbar = toolbar;
         this.imagesHorizontalList = imagesHorizontalList;
+        this.onlyFullscreen = onlyFullscreen;
+        if (onlyFullscreen) makeFullscreen();
+    }
+
+    private void makeFullscreen()
+    {
+        toolbar.setVisibility(View.GONE);
+        imagesHorizontalList.setVisibility(View.GONE);
     }
 
     @Override
@@ -65,7 +64,7 @@ public class ViewPagerAdapter extends PagerAdapter {
         Glide.with(container.getContext()).load(images.get(position))
                 .into(photoView);
 
-        photoView.setOnPhotoTapListener(new AlOnPhotoTapListener());
+        if (!onlyFullscreen) photoView.setOnPhotoTapListener(new AlOnPhotoTapListener());
 
         container.addView(itemView);
 
@@ -85,15 +84,11 @@ public class ViewPagerAdapter extends PagerAdapter {
             {
                 if (isShowing) {
                     isShowing = false;
-//                toolbar.setVisibility(View.GONE);
                     toolbar.animate().translationY(-toolbar.getBottom()).setInterpolator(new AccelerateInterpolator()).start();
-//                relativeLayout.animate().translationY(-toolbar.getBottom()).setInterpolator(new AccelerateInterpolator()).start();
                     imagesHorizontalList.animate().translationY(imagesHorizontalList.getBottom()).setInterpolator(new AccelerateInterpolator()).start();
                 } else {
                     isShowing = true;
-//                toolbar.setVisibility(View.VISIBLE);
                     toolbar.animate().translationY(0).setInterpolator(new DecelerateInterpolator()).start();
-//                relativeLayout.animate().translationY(0).setInterpolator(new DecelerateInterpolator()).start();
                     imagesHorizontalList.animate().translationY(0).setInterpolator(new DecelerateInterpolator()).start();
                 }
             }

@@ -96,12 +96,12 @@ public class GridBuilder
      */
     public void show() {
         Intent gridActivity = new Intent(mActivity, GridActivity.class);
-        gridActivity.putExtra(Constants.IntentPassingParams.IMAGES, imagesURLs);
-        gridActivity.putExtra(Constants.IntentPassingParams.COUNT, spanCount);
-        gridActivity.putExtra(Constants.IntentPassingParams.TITLE, title);
-        gridActivity.putExtra(Constants.IntentPassingParams.TOOLBAR_COLOR_ID, toolbarColor);
-        gridActivity.putExtra(Constants.IntentPassingParams.IMG_PLACEHOLDER, imgPlaceHolderResId);
-        gridActivity.putExtra(Constants.IntentPassingParams.TOOLBAR_TITLE_COLOR, color);
+        gridActivity.putExtra(GalleryConstants.IntentPassingParams.IMAGES, imagesURLs);
+        gridActivity.putExtra(GalleryConstants.IntentPassingParams.COUNT, spanCount);
+        gridActivity.putExtra(GalleryConstants.IntentPassingParams.TITLE, title);
+        gridActivity.putExtra(GalleryConstants.IntentPassingParams.TOOLBAR_COLOR_ID, toolbarColor);
+        gridActivity.putExtra(GalleryConstants.IntentPassingParams.IMG_PLACEHOLDER, imgPlaceHolderResId);
+        gridActivity.putExtra(GalleryConstants.IntentPassingParams.TOOLBAR_TITLE_COLOR, color);
         mActivity.startActivity(gridActivity);
     }
 }

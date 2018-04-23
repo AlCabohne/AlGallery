@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.support.annotation.Nullable;
 
 import com.alcabone.gesturegallery.activities.GalleryActivity;
-import com.alcabone.gesturegallery.entities.ZColor;
 
 import java.util.ArrayList;
 
@@ -18,26 +17,36 @@ public class GalleryBuilder
     private Activity mActivity;
     private ArrayList<String> imagesURLs;
     private String title;
-    private int spanCount = 2;
-    private int toolbarColor = -1;
-    private int imgPlaceHolderResId = -1;
-    private ZColor color;
+    //    private int spanCount = 2;
+//    private int toolbarColor = -1;
+//    private int imgPlaceHolderResId = -1;
+    private int titleColorID = -1;
     private int selectedImgPosition;
-    private ZColor backgroundColor;
+    private boolean onlyFullscreen;
+    private int showBackButton = 0;
 
-    private GalleryBuilder() {
+    private GalleryBuilder(Activity activity, ArrayList<String> imagesURLs)
+    {
+        this.imagesURLs = imagesURLs;
+        this.mActivity = activity;
     }
 
     /**
-     * @param activity   Refrence from current activity
+     * @param activity   Reference from current activity
      * @param imagesURLs Image URLs to be displayed
      */
     public static GalleryBuilder withUrls(Activity activity, ArrayList<String> imagesURLs) {
-        return new GalleryBuilder(activity, imagesURLs, null);
+        return new GalleryBuilder(activity, imagesURLs);
     }
 
-    public static GalleryBuilder withIds(Activity activity, ArrayList<Integer> imagesIds) {
-        return new GalleryBuilder(activity, null, imagesIds);
+    /**
+     * @param activity    Reference from current activity
+     * @param resourceIds Ressource Ids to be displayed
+     */
+    public static GalleryBuilder withIds(Activity activity, ArrayList<Integer> resourceIds)
+    {
+        ArrayList<String> imageURLs = resolveImages(activity, resourceIds);
+        return new GalleryBuilder(activity, imageURLs);
     }
 
     private GalleryBuilder(Activity activity, @Nullable ArrayList<String> imagesURLs, @Nullable ArrayList<Integer> resIds) {
@@ -46,70 +55,14 @@ public class GalleryBuilder
         this.mActivity = activity;
     }
 
-    /**
-     * Set z_toolbar title
-     *
-     * @param title
-     * @return
-     */
-    public GalleryBuilder setTitle(String title) {
-        this.title = title;
-        return this;
+    public static GalleryBuilder withIds(Activity activity, int[] resourceIds)
+    {
+        ArrayList<String> imageURLs = resolveImages(activity, resourceIds);
+        return new GalleryBuilder(activity, imageURLs);
     }
 
-    /**
-     * Setting z_toolbar Color ResourceId
-     *
-     * @param colorResId
-     * @return
-     */
-    public GalleryBuilder setToolbarColorResId(int colorResId) {
-        this.toolbarColor = colorResId;
-        return this;
-    }
-
-    /**
-     * Setting z_toolbar color
-     *
-     * @param color enum color may be black or white
-     * @return
-     */
-    public GalleryBuilder setToolbarTitleColor(ZColor color) {
-        this.color = color;
-        return this;
-    }
-
-    /**
-     * Setting starting position
-     *
-     * @param selectedImgPosition
-     * @return
-     */
-    public GalleryBuilder setSelectedImgPosition(int selectedImgPosition) {
-        this.selectedImgPosition = selectedImgPosition;
-        return this;
-    }
-
-    public GalleryBuilder setGalleryBackgroundColor(ZColor backgroundColor) {
-        this.backgroundColor = backgroundColor;
-        return this;
-    }
-
-    /**
-     * Start the gallery activity with builder settings
-     */
-    public void show() {
-        Intent gridActivity = new Intent(mActivity, GalleryActivity.class);
-        gridActivity.putExtra(Constants.IntentPassingParams.IMAGES, imagesURLs);
-        gridActivity.putExtra(Constants.IntentPassingParams.TITLE, title);
-        gridActivity.putExtra(Constants.IntentPassingParams.TOOLBAR_COLOR_ID, toolbarColor);
-        gridActivity.putExtra(Constants.IntentPassingParams.TOOLBAR_TITLE_COLOR, color);
-        gridActivity.putExtra(Constants.IntentPassingParams.SELECTED_IMG_POS, selectedImgPosition);
-        gridActivity.putExtra(Constants.IntentPassingParams.BG_COLOR, backgroundColor);
-        mActivity.startActivity(gridActivity);
-    }
-
-    private String getPathFromResId(int resId, Context context){
+    private static String getPathFromResId(int resId, Context context)
+    {
         Resources resources = context.getResources();
         Uri uri = new Uri.Builder()
                 .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
@@ -121,7 +74,7 @@ public class GalleryBuilder
         return uri.toString();
     }
 
-    private ArrayList<String> resolveImages(Context context, ArrayList<Integer> resIds)
+    private static ArrayList<String> resolveImages(Context context, ArrayList<Integer> resIds)
     {
         ArrayList<String> images = new ArrayList<>();
         for (int id : resIds)
@@ -129,5 +82,89 @@ public class GalleryBuilder
             images.add(getPathFromResId(id, context));
         }
         return images;
+    }
+
+    private static ArrayList<String> resolveImages(Context context, int[] resIds)
+    {
+        ArrayList<String> images = new ArrayList<>();
+        for (int id : resIds)
+        {
+            images.add(getPathFromResId(id, context));
+        }
+        return images;
+    }
+
+    /**
+     * Set Toolbar title
+     *
+     * @param title The title to be displayed
+     * @return GalleryBuilder Instance
+     */
+    public GalleryBuilder setTitle(String title) {
+        this.title = title;
+        return this;
+    }
+
+    /**
+     * Set Fullscreen Mode
+     *
+     * @param fullscreen If true, no Toolbar and Image Bar is shown
+     * @return GalleryBuilder Instance
+     */
+
+    public GalleryBuilder setFullscreenMode(boolean fullscreen)
+    {
+        this.onlyFullscreen = fullscreen;
+        return this;
+    }
+
+    /**
+     * Setting Toolbar Title color
+     *
+     * @param titleColorID enum color may be black or white
+     * @return GalleryBuilder Instance
+     */
+    public GalleryBuilder setToolbarTitleColor(int titleColorID)
+    {
+        this.titleColorID = titleColorID;
+        return this;
+    }
+
+    /**
+     * Setting Show Back Button
+     *
+     * @param showBackButton choose one of GalleryConstants.ColorOptions.BACK_BUTTON_WHITE, GalleryConstants.ColorOptions.BACK_BUTTON_BLACK
+     *                       GalleryConstants.ColorOptions.BACK_BUTTON_NONE,
+     * @return GalleryBuilder Instance
+     */
+    public GalleryBuilder setShowBackButton(int showBackButton)
+    {
+        this.showBackButton = showBackButton;
+        return this;
+    }
+
+    /**
+     * Setting starting position
+     *
+     * @param selectedImgPosition List position of starting Picture
+     * @return GalleryBuilder Instance
+     */
+    public GalleryBuilder setSelectedImgPosition(int selectedImgPosition) {
+        this.selectedImgPosition = selectedImgPosition;
+        return this;
+    }
+
+    /**
+     * Start the gallery activity with builder settings
+     */
+    public void show() {
+        Intent gridActivity = new Intent(mActivity, GalleryActivity.class);
+        gridActivity.putExtra(GalleryConstants.IntentPassingParams.IMAGES, imagesURLs);
+        gridActivity.putExtra(GalleryConstants.IntentPassingParams.TITLE, title);
+        gridActivity.putExtra(GalleryConstants.IntentPassingParams.ONLYFULLSCREEN, onlyFullscreen);
+        gridActivity.putExtra(GalleryConstants.IntentPassingParams.SHOWBACKBUTTON, showBackButton);
+        gridActivity.putExtra(GalleryConstants.IntentPassingParams.TOOLBAR_TITLE_COLOR, titleColorID);
+        gridActivity.putExtra(GalleryConstants.IntentPassingParams.SELECTED_IMG_POS, selectedImgPosition);
+        mActivity.startActivity(gridActivity);
     }
 }
