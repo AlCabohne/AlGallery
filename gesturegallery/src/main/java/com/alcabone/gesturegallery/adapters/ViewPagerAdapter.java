@@ -57,7 +57,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        View itemView = mLayoutInflater.inflate(R.layout.z_pager_item, container, false);
+        View itemView = mLayoutInflater.inflate(R.layout.item_pager, container, false);
         PhotoView photoView = itemView.findViewById(R.id.iv);
         photoView.setMaximumScale(10);
 

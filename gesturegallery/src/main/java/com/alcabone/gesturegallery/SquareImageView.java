@@ -1,13 +1,11 @@
 package com.alcabone.gesturegallery;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
-/**
- * Created by mohamedzakaria on 8/7/16.
- */
-public class SquareImageView extends ImageView {
+public class SquareImageView extends AppCompatImageView
+{
     public SquareImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
@@ -16,6 +14,7 @@ public class SquareImageView extends ImageView {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int width = getMeasuredWidth();
+        //noinspection SuspiciousNameCombination
         setMeasuredDimension(width, width);
     }
 }

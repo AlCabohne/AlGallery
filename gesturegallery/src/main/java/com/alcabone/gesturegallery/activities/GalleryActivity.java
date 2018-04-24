@@ -21,7 +21,7 @@ public class GalleryActivity extends BaseActivity {
 
     @Override
     protected int getResourceLayoutId() {
-        return R.layout.z_activity_gallery;
+        return R.layout.activity_gallery;
     }
 
     @Override

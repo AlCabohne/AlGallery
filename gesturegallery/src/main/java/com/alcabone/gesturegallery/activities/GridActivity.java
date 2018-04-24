@@ -10,30 +10,24 @@ import com.alcabone.gesturegallery.R;
 import com.alcabone.gesturegallery.adapters.GridImagesAdapter;
 import com.alcabone.gesturegallery.adapters.listeners.GridClickListener;
 
-/**
- * Created by mohamedzakaria on 8/6/16.
- */
 public final class GridActivity extends BaseActivity implements GridClickListener {
-    private RecyclerView mRecyclerView;
-    private GridImagesAdapter adapter;
-
-    private int imgPlaceHolderResId;
-    private int spanCount = 2;
 
     @Override
     protected int getResourceLayoutId() {
-        return R.layout.z_activity_grid;
+        return R.layout.activity_grid;
     }
 
     @Override
     protected void afterInflation() {
-        mRecyclerView = findViewById(R.id.recyclerView);
+        // init layout
+        RecyclerView mRecyclerView = findViewById(R.id.recyclerView);
 
         // get extra values
-        imgPlaceHolderResId = getIntent().getIntExtra(GalleryConstants.IntentPassingParams.IMG_PLACEHOLDER, -1);
-        spanCount = getIntent().getIntExtra(GalleryConstants.IntentPassingParams.COUNT, 2);
+        int imgPlaceHolderResId = getIntent().getIntExtra(GalleryConstants.IntentPassingParams.IMG_PLACEHOLDER, -1);
+        int spanCount = getIntent().getIntExtra(GalleryConstants.IntentPassingParams.COUNT, 2);
 
-        adapter = new GridImagesAdapter(this, imageURLs, imgPlaceHolderResId);
+        //init adapter
+        GridImagesAdapter adapter = new GridImagesAdapter(this, imageURLs, imgPlaceHolderResId);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, spanCount));
         mRecyclerView.setAdapter(adapter);
     }
@@ -49,8 +43,9 @@ public final class GridActivity extends BaseActivity implements GridClickListene
     @Override
     public void onClick(int pos) {
         GalleryBuilder.withUrls(this, imageURLs)
-//                .setToolbarTitleColor(R.color.)
-//                .setToolbarColorResId(toolbarColorResId)
+                .setToolbarTitleColor(toolbarTitleColor)
+                .setFullscreenMode(onlyFullscreen)
+                .setShowBackButton(showBackButton)
                 .setSelectedImgPosition(pos)
                 .setTitle(mToolbar.getTitle().toString())
                 .show();

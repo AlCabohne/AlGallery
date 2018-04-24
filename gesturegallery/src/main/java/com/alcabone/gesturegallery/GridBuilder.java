@@ -4,34 +4,44 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.alcabone.gesturegallery.activities.GridActivity;
-import com.alcabone.gesturegallery.entities.ZColor;
+import com.alcabone.gesturegallery.util.PathResolver;
 
 import java.util.ArrayList;
 
-/**
- * Created by mohamedzakaria on 8/7/16.
- */
 public class GridBuilder
 {
     private Activity mActivity;
     private ArrayList<String> imagesURLs;
     private String title;
     private int spanCount = 2;
-    private int toolbarColor = -1;
     private int imgPlaceHolderResId = -1;
-    private ZColor color;
-
-    private GridBuilder() {
-    }
+    private int titleColorID = -1;
+    private int showBackButton = 0;
 
     /**
-     * @param activity   Refrence from current activity
+     * @param activity   Reference from current activity
      * @param imagesURLs Image URLs to be displayed
      */
-    public static GridBuilder with(Activity activity, ArrayList<String> imagesURLs) {
+    public static GridBuilder withURL(Activity activity, ArrayList<String> imagesURLs)
+    {
         return new GridBuilder(activity, imagesURLs);
     }
 
+    /**
+     * @param activity    Reference from current activity
+     * @param resourceIds Ressource Ids to be displayed
+     */
+    public static GridBuilder withIds(Activity activity, ArrayList<Integer> resourceIds)
+    {
+        ArrayList<String> imageURLs = PathResolver.resolveImages(activity, resourceIds);
+        return new GridBuilder(activity, imageURLs);
+    }
+
+    public static GridBuilder withIds(Activity activity, int[] resourceIds)
+    {
+        ArrayList<String> imageURLs = PathResolver.resolveImages(activity, resourceIds);
+        return new GridBuilder(activity, imageURLs);
+    }
 
     private GridBuilder(Activity activity, ArrayList<String> imagesURLs) {
         this.imagesURLs = imagesURLs;
@@ -39,10 +49,10 @@ public class GridBuilder
     }
 
     /**
-     * Set toolbar title
+     * Set Toolbar title
      *
-     * @param title
-     * @return
+     * @param title The title to be displayed
+     * @return GridBuilder Instance
      */
     public GridBuilder setTitle(String title) {
         this.title = title;
@@ -50,10 +60,10 @@ public class GridBuilder
     }
 
     /**
-     * Set grid layout colums count (default: 2)
+     * Set grid layout columns count (default: 2)
      *
      * @param count integer number for colum count
-     * @return
+     * @return GridBuilder Instance
      */
     public GridBuilder setSpanCount(int count) {
         this.spanCount = count;
@@ -61,20 +71,9 @@ public class GridBuilder
     }
 
     /**
-     * Setting toolbar Color ResourceId
-     *
-     * @param colorResId
-     * @return
-     */
-    public GridBuilder setToolbarColorResId(int colorResId) {
-        this.toolbarColor = colorResId;
-        return this;
-    }
-
-    /**
      * Set placeholder image for images in the grid
-     * @param imgPlaceHolderResId
-     * @return
+     * @param imgPlaceHolderResId Resource ID for Placeholder
+     * @return GridBuilder Instance
      */
     public GridBuilder setGridImgPlaceHolder(int imgPlaceHolderResId) {
         this.imgPlaceHolderResId = imgPlaceHolderResId;
@@ -82,13 +81,27 @@ public class GridBuilder
     }
 
     /**
-     * Setting toolbar color
+     * Setting Show Back Button
      *
-     * @param color enum color may be black or white
-     * @return
+     * @param showBackButton choose one of GalleryConstants.ColorOptions.BACK_BUTTON_WHITE, GalleryConstants.ColorOptions.BACK_BUTTON_BLACK
+     *                       GalleryConstants.ColorOptions.BACK_BUTTON_NONE,
+     * @return GridBuilder Instance
      */
-    public GridBuilder setToolbarTitleColor(ZColor color) {
-        this.color = color;
+    public GridBuilder setShowBackButton(int showBackButton)
+    {
+        this.showBackButton = showBackButton;
+        return this;
+    }
+
+    /**
+     * Setting Toolbar Title color
+     *
+     * @param titleColorID a color ID for the Title.
+     * @return GridBuilder Instance
+     */
+    public GridBuilder setToolbarTitleColor(int titleColorID)
+    {
+        this.titleColorID = titleColorID;
         return this;
     }
     /**
@@ -99,9 +112,9 @@ public class GridBuilder
         gridActivity.putExtra(GalleryConstants.IntentPassingParams.IMAGES, imagesURLs);
         gridActivity.putExtra(GalleryConstants.IntentPassingParams.COUNT, spanCount);
         gridActivity.putExtra(GalleryConstants.IntentPassingParams.TITLE, title);
-        gridActivity.putExtra(GalleryConstants.IntentPassingParams.TOOLBAR_COLOR_ID, toolbarColor);
         gridActivity.putExtra(GalleryConstants.IntentPassingParams.IMG_PLACEHOLDER, imgPlaceHolderResId);
-        gridActivity.putExtra(GalleryConstants.IntentPassingParams.TOOLBAR_TITLE_COLOR, color);
+        gridActivity.putExtra(GalleryConstants.IntentPassingParams.TOOLBAR_TITLE_COLOR, titleColorID);
+        gridActivity.putExtra(GalleryConstants.IntentPassingParams.SHOWBACKBUTTON, showBackButton);
         mActivity.startActivity(gridActivity);
     }
 }

@@ -6,7 +6,6 @@ public final class GalleryConstants
     public class IntentPassingParams {
         public static final String IMAGES = "images";
         public static final String COUNT = "count";
-        public static final String TOOLBAR_COLOR_ID = "toolbarColorId";
         public static final String TITLE = "title";
         public static final String ONLYFULLSCREEN = "onlyFullscreen";
         public static final String SHOWBACKBUTTON = "showBackButton";
@@ -16,7 +15,7 @@ public final class GalleryConstants
 
     }
 
-    public class ColorOptions
+    public class GalleryOptions
     {
         public static final int BACK_BUTTON_NONE = 0;
         public static final int BACK_BUTTON_WHITE = 1;

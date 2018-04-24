@@ -18,8 +18,8 @@ public abstract class BaseActivity extends AppCompatActivity
     protected ArrayList<String> imageURLs;
     protected int toolbarTitleColor;
     protected boolean onlyFullscreen;
-    private int showBackButton;
-    private String title;
+    protected int showBackButton;
+    protected String title;
 
 
     @Override
@@ -55,25 +55,11 @@ public abstract class BaseActivity extends AppCompatActivity
             }
             if (toolbarTitleColor != -1)
                 mToolbar.setTitleTextColor(ContextCompat.getColor(this, toolbarTitleColor));
-            if (showBackButton == GalleryConstants.ColorOptions.BACK_BUTTON_WHITE)
+            if (showBackButton == GalleryConstants.GalleryOptions.BACK_BUTTON_WHITE)
                 mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white);
-            else if (showBackButton == GalleryConstants.ColorOptions.BACK_BUTTON_BLACK)
+            else if (showBackButton == GalleryConstants.GalleryOptions.BACK_BUTTON_BLACK)
                 mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_black);
 
-//            mToolbar.setVisibility(View.VISIBLE);
-//            if (toolbarTitleColor == ZColor.BLACK) {
-//                mToolbar.setTitleTextColor(ContextCompat.getColor(this, android.R.color.black));
-//                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black);
-//            } else {
-//                mToolbar.setTitleTextColor(ContextCompat.getColor(this, android.R.color.white));
-//                getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white);
-//            }
-//            mToolbar.setBackgroundColor(getResources().getColor(toolbarColorResId));
-//            if (title != null) {
-//                getSupportActionBar().setTitle(title);
-//            }
-//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//            getSupportActionBar().setHomeButtonEnabled(true);
         } else {
             mToolbar.setVisibility(View.GONE);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

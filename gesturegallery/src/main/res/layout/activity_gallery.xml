@@ -15,7 +15,7 @@
         android:fitsSystemWindows="true"/>
     <!--android:layout_below="@+id/toolbar"-->
 
-    <include layout="@layout/z_toolbar"/>
+    <include layout="@layout/toolbar"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/imagesHorizontalList"

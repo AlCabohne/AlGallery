@@ -1,8 +1,5 @@
 package com.alcabone.sample;
 
-import android.content.ContentResolver;
-import android.content.res.Resources;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,14 +8,11 @@ import android.view.View;
 import com.alcabone.gesturegallery.GalleryBuilder;
 import com.alcabone.gesturegallery.GalleryConstants;
 import com.alcabone.gesturegallery.GridBuilder;
-import com.alcabone.gesturegallery.entities.ZColor;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
 {
-
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -26,7 +20,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 
@@ -38,10 +32,10 @@ public class MainActivity extends AppCompatActivity
 
     public void gridActivity(View v)
     {
-        GridBuilder.with(this, getDummyImageList())
-                .setToolbarColorResId(R.color.colorPrimary)
-                .setTitle("Photo Gallery")
-                .setToolbarTitleColor(ZColor.WHITE)
+        GridBuilder.withIds(this, getDummyIDList())
+                .setTitle("Damage Templates")
+//                .setToolbarTitleColor(R.color.colorAccent)
+                .setShowBackButton(GalleryConstants.GalleryOptions.BACK_BUTTON_WHITE)
                 .setSpanCount(3)
                 .setGridImgPlaceHolder(R.color.colorPrimary)
                 .show();
@@ -49,24 +43,15 @@ public class MainActivity extends AppCompatActivity
 
     public void galleryActivity(View v)
     {
-        GalleryBuilder.withIds(this, getIdList())
+        GalleryBuilder.withIds(this, getDummyIDList())
 //                .setToolbarTitleColor(R.color.colorAccent)
-                .setShowBackButton(GalleryConstants.ColorOptions.BACK_BUTTON_WHITE)
+                .setShowBackButton(GalleryConstants.GalleryOptions.BACK_BUTTON_WHITE)
                 .setFullscreenMode(false)
                 .setTitle("Damage Templates")
                 .show();
     }
 
-    private ArrayList<String> getTestList()
-    {
-        ArrayList<String> imagesList = new ArrayList<>();
-
-        imagesList.add(getUriFromResId(R.drawable.truck));
-        imagesList.add(getUriFromResId(R.drawable.truck2));
-        return imagesList;
-    }
-
-    private ArrayList<Integer> getIdList()
+    private ArrayList<Integer> getDummyIDList()
     {
         ArrayList<Integer> idList = new ArrayList<>();
         idList.add(R.drawable.dmg_truck);
@@ -115,18 +100,5 @@ public class MainActivity extends AppCompatActivity
         imagesList.add("http://static0.passel.co/wp-content/uploads/2016/07/03092414/tumblr_ob6vk1bBPa1tlwzgvo1_500.jpg");
         imagesList.add("http://static0.passel.co/wp-content/uploads/2016/07/03092404/tumblr_o97ipvkger1ted1sho1_500.jpg");
         return imagesList;
-    }
-
-    private String getUriFromResId(int resId)
-    {
-        Resources resources = this.getResources();
-        Uri uri = new Uri.Builder()
-                .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
-                .authority(resources.getResourcePackageName(resId))
-                .appendPath(resources.getResourceTypeName(resId))
-                .appendPath(resources.getResourceEntryName(resId))
-                .build();
-
-        return uri.toString();
     }
 }
