@@ -42,7 +42,7 @@ public final class GridActivity extends BaseActivity implements GridClickListene
 
     @Override
     public void onClick(int pos) {
-        GalleryBuilder.withUrls(this, imageURLs)
+        GalleryBuilder.withURL(this, imageURLs)
                 .setToolbarTitleColor(toolbarTitleColor)
                 .setFullscreenMode(onlyFullscreen)
                 .setShowBackButton(showBackButton)
