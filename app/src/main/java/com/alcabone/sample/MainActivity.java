@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity
 
     public void gridActivity(View v)
     {
-        GridBuilder.withIds(this, getDummyIDList())
+        GridBuilder.withURL(this, getDummyImageList())
                 .setTitle("Damage Templates")
 //                .setToolbarTitleColor(R.color.colorAccent)
                 .setShowBackButton(GalleryConstants.GalleryOptions.BACK_BUTTON_WHITE)
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity
 
     public void galleryActivity(View v)
     {
-        GalleryBuilder.withIds(this, getDummyIDList())
+        GalleryBuilder.withUrls(this, getDummyImageList())
 //                .setToolbarTitleColor(R.color.colorAccent)
                 .setShowBackButton(GalleryConstants.GalleryOptions.BACK_BUTTON_WHITE)
                 .setFullscreenMode(false)
