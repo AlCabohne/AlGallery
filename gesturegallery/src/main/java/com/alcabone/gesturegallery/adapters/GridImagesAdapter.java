@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.alcabone.gesturegallery.R;
-import com.alcabone.gesturegallery.adapters.listeners.GridClickListener;
+import com.alcabone.gesturegallery.listeners.GridClickListener;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 

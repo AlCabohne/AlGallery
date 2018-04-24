@@ -8,7 +8,7 @@ import com.alcabone.gesturegallery.GalleryBuilder;
 import com.alcabone.gesturegallery.GalleryConstants;
 import com.alcabone.gesturegallery.R;
 import com.alcabone.gesturegallery.adapters.GridImagesAdapter;
-import com.alcabone.gesturegallery.adapters.listeners.GridClickListener;
+import com.alcabone.gesturegallery.listeners.GridClickListener;
 
 public final class GridActivity extends BaseActivity implements GridClickListener {
 
