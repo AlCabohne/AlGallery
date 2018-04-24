@@ -22,10 +22,6 @@ android {
     }
 }
 
-ext {
-    supportLibVersion = "27.1.1"
-}
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
