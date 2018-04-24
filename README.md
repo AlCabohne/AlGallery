@@ -39,13 +39,20 @@ GridBuilder.withURL(this, /*your string arraylist of image urls*/)
                 .setSpanCount(3)
                 .setGridImgPlaceHolder(R.color.colorPrimary)
                 .show();
-                
-GalleryBuilder.withUrls(this, getDummyImageList())
+
+GalleryBuilder.withURL(this, /*your string arraylist of image urls*/)
                 .setToolbarTitleColor(R.color.colorAccent)
                 .setShowBackButton(GalleryConstants.GalleryOptions.BACK_BUTTON_WHITE)
                 .setFullscreenMode(false)
                 .setTitle("Damage Templates")
                 .show();
+
+GridBuilder.withID(this, /*your ResourceID arraylist/int[] of drawables*/)
+                . ...
+
+GalleryBuilder.withID(this, /*your ResourceID arraylist/int[] of drawables*/)
+                . ...
+
 ```
 
 # License

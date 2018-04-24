@@ -31,13 +31,13 @@ public class GridBuilder
      * @param activity    Reference from current activity
      * @param resourceIds Ressource Ids to be displayed
      */
-    public static GridBuilder withIds(Activity activity, ArrayList<Integer> resourceIds)
+    public static GridBuilder withID(Activity activity, ArrayList<Integer> resourceIds)
     {
         ArrayList<String> imageURLs = PathResolver.resolveImages(activity, resourceIds);
         return new GridBuilder(activity, imageURLs);
     }
 
-    public static GridBuilder withIds(Activity activity, int[] resourceIds)
+    public static GridBuilder withID(Activity activity, int[] resourceIds)
     {
         ArrayList<String> imageURLs = PathResolver.resolveImages(activity, resourceIds);
         return new GridBuilder(activity, imageURLs);

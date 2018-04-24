@@ -25,7 +25,8 @@ public class GalleryBuilder
      * @param activity   Reference from current activity
      * @param imagesURLs Image URLs to be displayed
      */
-    public static GalleryBuilder withUrls(Activity activity, ArrayList<String> imagesURLs) {
+    public static GalleryBuilder withURL(Activity activity, ArrayList<String> imagesURLs)
+    {
         return new GalleryBuilder(activity, imagesURLs);
     }
 
@@ -47,13 +48,13 @@ public class GalleryBuilder
      * @param activity    Reference from current activity
      * @param resourceIds Ressource Ids to be displayed
      */
-    public static GalleryBuilder withIds(Activity activity, ArrayList<Integer> resourceIds)
+    public static GalleryBuilder withID(Activity activity, ArrayList<Integer> resourceIds)
     {
         ArrayList<String> imageURLs = PathResolver.resolveImages(activity, resourceIds);
         return new GalleryBuilder(activity, imageURLs);
     }
 
-    public static GalleryBuilder withIds(Activity activity, int[] resourceIds)
+    public static GalleryBuilder withID(Activity activity, int[] resourceIds)
     {
         ArrayList<String> imageURLs = PathResolver.resolveImages(activity, resourceIds);
         return new GalleryBuilder(activity, imageURLs);
