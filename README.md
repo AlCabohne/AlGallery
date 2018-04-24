@@ -1,7 +1,29 @@
 # AlGallery
 Easy to use Image Gallery / Viewpager with the ability to zoom. Based on ZGallery
 
+[![](https://jitpack.io/v/AlCabohne/AlGallery.svg)](https://jitpack.io/#AlCabohne/AlGallery)
 
+
+
+## Installation
+
+Add this to your **root** build.gradle file (not your module build.gradle file) :
+```java
+allprojects {
+  repositories {
+    ...
+    maven { url "https://jitpack.io" }
+  }
+}
+```
+
+Add this to your module `build.gradle` file:
+```java
+dependencies {
+  ...
+    implementation 'com.github.AlCabohne:AlGallery:v0.1.0'
+}
+```
 
 
 # License
