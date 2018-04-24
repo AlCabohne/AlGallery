@@ -29,6 +29,24 @@ dependencies {
 }
 ```
 
+## Usage
+
+```java
+GridBuilder.withURL(this, /*your string arraylist of image urls*/)
+                .setTitle("Some Title")
+                .setToolbarTitleColor(R.color.colorAccent)
+                .setShowBackButton(GalleryConstants.GalleryOptions.BACK_BUTTON_WHITE)
+                .setSpanCount(3)
+                .setGridImgPlaceHolder(R.color.colorPrimary)
+                .show();
+                
+GalleryBuilder.withUrls(this, getDummyImageList())
+                .setToolbarTitleColor(R.color.colorAccent)
+                .setShowBackButton(GalleryConstants.GalleryOptions.BACK_BUTTON_WHITE)
+                .setFullscreenMode(false)
+                .setTitle("Damage Templates")
+                .show();
+```
 
 # License
 
