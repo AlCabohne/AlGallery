@@ -15,6 +15,10 @@ allprojects {
     maven { url "https://jitpack.io" }
   }
 }
+...
+ext{
+    supportLibVersion = "27.1.1"
+}
 ```
 
 Add this to your module `build.gradle` file:
