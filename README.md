@@ -17,7 +17,7 @@ allprojects {
 }
 ...
 ext{
-    supportLibVersion = "27.1.1"
+    supportLibVersion = "/*your current version of support library*/"
 }
 ```
 
@@ -25,7 +25,7 @@ Add this to your module `build.gradle` file:
 ```java
 dependencies {
   ...
-    implementation 'com.github.AlCabohne:AlGallery:v0.1.0'
+    implementation 'com.github.AlCabohne:AlGallery:v0.1.3'
 }
 ```
 
