@@ -2,7 +2,6 @@ package com.alcabone.sample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.alcabone.gesturegallery.GalleryBuilder;
@@ -20,8 +19,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
     }
 
     @Override
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity
         GalleryBuilder.withURL(this, getDummyImageList())
 //                .setToolbarTitleColor(R.color.colorAccent)
                 .setShowBackButton(GalleryConstants.GalleryOptions.BACK_BUTTON_WHITE)
-                .setFullscreenMode(false)
+//                .setFullscreenMode(false)
                 .setTitle("Damage Templates")
                 .show();
     }

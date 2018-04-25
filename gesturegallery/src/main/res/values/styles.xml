@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme.Toolbar" parent="ThemeOverlay.AppCompat.ActionBar">
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+    <style name="GalleryTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light"/>
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light"/>-->
 
-    <style name="FullscreenTheme" parent="AppTheme">
-        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
-        <item name="android:windowActionBarOverlay">true</item>
-        <item name="android:windowBackground">@null</item>
-        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
-        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
-    </style>
+    <!--<style name="FullscreenTheme" parent="AppTheme">-->
+    <!--<item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>-->
+    <!--<item name="android:windowActionBarOverlay">true</item>-->
+    <!--<item name="android:windowBackground">@null</item>-->
+    <!--<item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>-->
+    <!--<item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>-->
+    <!--</style>-->
 
-    <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
-        <item name="android:background">@color/black_overlay</item>
-    </style>
+    <!--<style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">-->
+    <!--<item name="android:background">@color/black_overlay</item>-->
+    <!--</style>-->
+
+    <!--<style name="AppTheme.Toolbar" parent="ThemeOverlay.AppCompat.ActionBar">-->
+    <!--<item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>-->
+    <!--</style>-->
 </resources>

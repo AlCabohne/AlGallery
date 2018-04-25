@@ -62,6 +62,7 @@ public abstract class BaseActivity extends AppCompatActivity
 
         } else {
             mToolbar.setVisibility(View.GONE);
+            getSupportActionBar().setTitle(title);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
         }
