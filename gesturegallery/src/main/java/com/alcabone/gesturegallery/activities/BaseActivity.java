@@ -46,7 +46,7 @@ public abstract class BaseActivity extends AppCompatActivity
 
     private void applyToolbar()
     {
-        mToolbar = findViewById(R.id.gesturegallerytoolbar);
+        mToolbar = findViewById(R.id.gestureGalleryToolbar);
 
         if (getSupportActionBar() == null) {
             setSupportActionBar(mToolbar);
