@@ -4,7 +4,9 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <include layout="@layout/gesture_gallery_toolbar"/>
+    <include
+        android:id="@+id/gestureGalleryToolbar"
+        layout="@layout/gesture_gallery_toolbar"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
