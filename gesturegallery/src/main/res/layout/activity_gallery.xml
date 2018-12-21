@@ -13,9 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"/>
-    <!--android:layout_below="@+id/toolbar"-->
+    <!--android:layout_below="@+id/gestureGalleryToolbar"-->
 
-    <include layout="@layout/toolbar"/>
+    <include layout="@layout/gesture_gallery_toolbar"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/imagesHorizontalList"

@@ -6,15 +6,6 @@
               android:orientation="vertical"
               tools:context="com.alcabone.sample.MainActivity">
 
-    <!--<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--android:id="@+id/toolbar"-->
-    <!--android:layout_width="fill_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:background="?attr/colorPrimary"-->
-    <!--android:fitsSystemWindows="true"-->
-    <!--android:minHeight="?attr/actionBarSize"-->
-    <!--app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>-->
-
     <Button
         android:id="@+id/gridActivityBtn"
         android:layout_width="wrap_content"
