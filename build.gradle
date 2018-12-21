@@ -2,11 +2,11 @@
 
 buildscript {
     repositories {
-        jcenter()
         google()
+        jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'com.android.tools.build:gradle:3.2.1'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
     }
 }
@@ -16,8 +16,8 @@ allprojects {
         options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
     }
     repositories {
-        jcenter()
         google()
+        jcenter()
         maven { url "https://jitpack.io" }
     }
 }
@@ -26,6 +26,3 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-ext {
-    supportLibVersion = "27.1.1"
-}

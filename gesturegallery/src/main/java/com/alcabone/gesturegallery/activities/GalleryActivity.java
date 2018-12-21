@@ -1,8 +1,5 @@
 package com.alcabone.gesturegallery.activities;
 
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 
 import com.alcabone.gesturegallery.CustomViewPager;
@@ -10,6 +7,10 @@ import com.alcabone.gesturegallery.GalleryConstants;
 import com.alcabone.gesturegallery.R;
 import com.alcabone.gesturegallery.adapters.HorizontalListAdapters;
 import com.alcabone.gesturegallery.adapters.ViewPagerAdapter;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 public class GalleryActivity extends BaseActivity {
 

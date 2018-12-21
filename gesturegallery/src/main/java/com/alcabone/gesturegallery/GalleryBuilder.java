@@ -2,12 +2,13 @@ package com.alcabone.gesturegallery;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.annotation.Nullable;
 
 import com.alcabone.gesturegallery.activities.GalleryActivity;
 import com.alcabone.gesturegallery.util.PathResolver;
 
 import java.util.ArrayList;
+
+import androidx.annotation.Nullable;
 
 
 public class GalleryBuilder

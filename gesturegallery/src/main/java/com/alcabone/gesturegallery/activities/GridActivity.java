@@ -1,7 +1,5 @@
 package com.alcabone.gesturegallery.activities;
 
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 
 import com.alcabone.gesturegallery.GalleryBuilder;
@@ -9,6 +7,9 @@ import com.alcabone.gesturegallery.GalleryConstants;
 import com.alcabone.gesturegallery.R;
 import com.alcabone.gesturegallery.adapters.GridImagesAdapter;
 import com.alcabone.gesturegallery.listeners.GridClickListener;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public final class GridActivity extends BaseActivity implements GridClickListener {
 

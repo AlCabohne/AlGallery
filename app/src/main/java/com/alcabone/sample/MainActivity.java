@@ -1,7 +1,6 @@
 package com.alcabone.sample;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.alcabone.gesturegallery.GalleryBuilder;
@@ -9,6 +8,8 @@ import com.alcabone.gesturegallery.GalleryConstants;
 import com.alcabone.gesturegallery.GridBuilder;
 
 import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -18,9 +19,6 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
     }
 
     @Override
@@ -32,7 +30,7 @@ public class MainActivity extends AppCompatActivity
     public void gridActivity(View v)
     {
         GridBuilder.withURL(this, getDummyImageList())
-                .setTitle("Damage Templates")
+                .setTitle("Some Title")
 //                .setToolbarTitleColor(R.color.colorAccent)
                 .setShowBackButton(GalleryConstants.GalleryOptions.BACK_BUTTON_WHITE)
                 .setSpanCount(3)
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity
 //                .setToolbarTitleColor(R.color.colorAccent)
                 .setShowBackButton(GalleryConstants.GalleryOptions.BACK_BUTTON_WHITE)
 //                .setFullscreenMode(false)
-                .setTitle("Damage Templates")
+                .setTitle("Some Title")
                 .show();
     }
 
